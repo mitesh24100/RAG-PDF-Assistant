@@ -25,6 +25,7 @@ tavily-python = "^0.3.3"
 streamlit = "^1.51.0"
 pypdf = "^6.3.0"
 ollama = "^0.6.1"
+faiss-cpu = "^1.13.0"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

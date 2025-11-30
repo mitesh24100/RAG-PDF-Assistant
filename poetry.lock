@@ -1054,6 +1054,36 @@ typing-extensions = {version = ">=4.6.0", markers = "python_version < \"3.13\""}
 test = ["pytest (>=6)"]
 
 [[package]]
+name = "faiss-cpu"
+version = "1.13.0"
+description = "A library for efficient similarity search and clustering of dense vectors."
+optional = false
+python-versions = "<3.15,>=3.9"
+groups = ["main"]
+files = [
+    {file = "faiss_cpu-1.13.0-cp310-cp310-win_amd64.whl", hash = "sha256:0ccd33708f71607b6859c6d7a5a9e7f0f59f1741ccf6b70597f2276769886768"},
+    {file = "faiss_cpu-1.13.0-cp311-cp311-win_amd64.whl", hash = "sha256:4bdc39b1bd7cbb6bb98cce3affc6c0b54e216b8ff57f22b4a8aa81cfde778417"},
+    {file = "faiss_cpu-1.13.0-cp311-cp311-win_arm64.whl", hash = "sha256:98880cb99bf4fa7a89e81dd0e1c8daab0975eabcc006fc33437d9e3f43493a0e"},
+    {file = "faiss_cpu-1.13.0-cp312-cp312-win_amd64.whl", hash = "sha256:152877176ff5f84e1690fd19fbad8931c8a47ec77a310ffae4e7ca738851d4d5"},
+    {file = "faiss_cpu-1.13.0-cp312-cp312-win_arm64.whl", hash = "sha256:aeffee29c00316e3de11d8646703814f9c2110c199efc7874369bfaf961447b3"},
+    {file = "faiss_cpu-1.13.0-cp313-cp313-win_amd64.whl", hash = "sha256:43be41c086413faa480460aea6fe0f5d3bc119d88405d4e95793e89612300b41"},
+    {file = "faiss_cpu-1.13.0-cp313-cp313-win_arm64.whl", hash = "sha256:d8714f8dad5da31ea235584a07e9671216072b78edddf31b352f96e798f9aac5"},
+    {file = "faiss_cpu-1.13.0-cp314-cp314-win_amd64.whl", hash = "sha256:1bafa485809121c8a7da69c3d31e2f176ec8ab5c8ea78eba772aa5a81c29fd0a"},
+    {file = "faiss_cpu-1.13.0-cp314-cp314-win_arm64.whl", hash = "sha256:917bddfd45553c54517f12c7ebfccefdee1dcf01defb7e9fd5dba711af391320"},
+    {file = "faiss_cpu-1.13.0-cp39-abi3-macosx_14_0_arm64.whl", hash = "sha256:5867f6731d45ab596812de1d8f0f5f171103d41fb5642ad9dc8deb30c41a699a"},
+    {file = "faiss_cpu-1.13.0-cp39-abi3-macosx_14_0_x86_64.whl", hash = "sha256:9603840474749a7fc3e0a7a6d700d16ab99f947b803537449bbcc66c3f90bfce"},
+    {file = "faiss_cpu-1.13.0-cp39-abi3-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:2fc555157ba69bddfab9142245632b7c0ad7ec20d48b6046ffcef6d9397fd034"},
+    {file = "faiss_cpu-1.13.0-cp39-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:15f7fe4bbfa0ee05fb95947f6eaf520cef451a4dfe2d15a00a8cf34f8ba67840"},
+    {file = "faiss_cpu-1.13.0-cp39-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:fb264703092b5f7bd27188edd00ca50d319c9c08f4c743be5df11c6c3bf4bfcb"},
+    {file = "faiss_cpu-1.13.0-cp39-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:0cffbac3a89da937d6415e2183379360787baf0b783e1d2b155533df2ab3e1d1"},
+    {file = "faiss_cpu-1.13.0-cp39-cp39-win_amd64.whl", hash = "sha256:f15a82e66f43528173debda57dc0111ef563e069b40f3dca8583eafb77ca544d"},
+]
+
+[package.dependencies]
+numpy = ">=1.25.0,<3.0"
+packaging = "*"
+
+[[package]]
 name = "fastapi"
 version = "0.121.3"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
@@ -6929,4 +6959,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10.0,<3.12"
-content-hash = "ecc75fd57e3dfc71ee62da1bc5b5369817bd4011f390b40d7709cd068676bf36"
+content-hash = "18a452b6083755628c5db2456c5036773796dd6eecc73b75ae1b531980a29cb6"

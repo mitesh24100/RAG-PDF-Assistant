@@ -1,26 +1,25 @@
 import os
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores import FAISS
 
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.chat_models import ChatOllama
 
 
-PDF_PATH = "./pdfs/demo.pdf"
-CHROMA_DIR = "./db/chroma"
+FAISS_DIR = "./db/faiss"
 os.environ["CHROMA_TELEMETRY"] = "false"
 
 
 # ------------------------------------------------------------
 # 1. Load + Chunk PDF
 # ------------------------------------------------------------
-def load_and_split_pdf():
-    loader = PyPDFLoader(PDF_PATH)
+def load_and_split_pdf(pdf_path):
+    loader = PyPDFLoader(pdf_path)
     docs = loader.load()
 
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=800,        # smaller chunks for phi3-mini
+        chunk_size=800,        
         chunk_overlap=100
     )
     return splitter.split_documents(docs)
@@ -32,11 +31,12 @@ def load_and_split_pdf():
 def create_vector_db(chunks):
     embeddings = OllamaEmbeddings(model="nomic-embed-text")
 
-    vectordb = Chroma.from_documents(
+    vectordb = FAISS.from_documents(
         documents=chunks,
         embedding=embeddings,
-        persist_directory=CHROMA_DIR
     )
+    os.makedirs(os.path.dirname(FAISS_DIR), exist_ok=True)
+    vectordb.save_local(FAISS_DIR)
 
     return vectordb
 
@@ -44,10 +44,7 @@ def create_vector_db(chunks):
 def load_vector_db():
     embeddings = OllamaEmbeddings(model="nomic-embed-text")
 
-    return Chroma(
-        persist_directory=CHROMA_DIR,
-        embedding_function=embeddings
-    )
+    return FAISS.load_local(FAISS_DIR, embeddings, allow_dangerous_deserialization=True)
 
 
 # ------------------------------------------------------------
@@ -76,24 +73,5 @@ def ask_question(vectordb, query):
     response = llm.invoke(prompt)
     return response.content
 
-
-# ------------------------------------------------------------
-# 4. Main Loop
-# ------------------------------------------------------------
 if __name__ == "__main__":
-    if not os.path.exists(CHROMA_DIR) or len(os.listdir(CHROMA_DIR)) == 0:
-        print("Building vector database...")
-        chunks = load_and_split_pdf()
-        vectordb = create_vector_db(chunks)
-        print("Vector DB created.")
-    else:
-        print("Loading existing vector DB...")
-        vectordb = load_vector_db()
-
-    while True:
-        query = input("\nAsk a question (or type 'exit'): ")
-        if query.lower() == "exit":
-            break
-
-        answer = ask_question(vectordb, query)
-        print("\nANSWER:\n", answer)
+    pass
